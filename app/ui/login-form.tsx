@@ -12,7 +12,7 @@ import { useFormState } from 'react-dom';
 import { authenticate } from '@/app/lib/action';
 
 export default function LoginForm() {
-  const [errorMessage, formAction, isPending] = useFormState(authenticate, undefined,);
+  const [errorMessage, formAction] = useFormState(authenticate, undefined);
 
   return (
     <form action={formAction} className="space-y-3">
@@ -61,9 +61,7 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
+        <LoginButton />
         <div className="flex h-8 items-end space-x-1" aria-live='polite' aria-atomic='true'>
           {errorMessage && (
             <>
@@ -74,5 +72,13 @@ export default function LoginForm() {
         </div>
       </div>
     </form>
+  );
+}
+
+function LoginButton() {
+  return (
+    <Button className="mt-4 w-full">
+      Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+    </Button>
   );
 }
